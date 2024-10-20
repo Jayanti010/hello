@@ -1,0 +1,66 @@
+#html code
+<html>
+<head>
+<script type="text/javascript">function
+gcd()
+{
+var x,y;
+x=parseInt(document.myform.n1.value)
+y=parseInt(document.myform.n2.value)
+while(x!=y)
+{
+if(x>y){x=x-y}
+else{y=x-y}
+}
+document.myform.result.value=x;
+}
+</script>
+</head>
+
+<body>
+<center>
+<h1>--Form To Calculate GCD Number--</h1>
+<hr color="red">
+<form name="myform">
+Enter number1:<input type="text" name="n1" value=""><br><br>
+Enter number2:<input type="text" name="n2" value=""><br><br>
+<input type="button" name="btn" value="Get gcd" onClick="gcd()"><br><br>
+GCD:<input type="text" name="result" value="">
+</form>
+</center>
+</body>
+</html>
+
+
+#class code
+
+package prac3; 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+
+public class myclass {
+	static String driverPath="C:\\Program Files\\Mozilla Firefox\\geckodriver.exe";
+	public static void main(String[] args) {
+		 
+		System.setProperty("webdriver.gecko.driver",driverPath);
+		FirefoxProfile fp=new FirefoxProfile();
+		fp.setPreference(FirefoxProfile.PORT_PREFERENCE,"7055");
+		FirefoxOptions options=new FirefoxOptions();
+		options.setProfile(fp);
+		WebDriver driver=new FirefoxDriver(options);
+		
+		driver.get("file:///C:/Users/HP/yours/hhhh.html");
+		driver.manage().window().maximize();
+		driver.findElement(By.name("n1")).sendKeys("36");
+		driver.findElement(By.name("n2")).sendKeys("6");
+		driver.findElement(By.name("btn")).click();
+		String
+		result=driver.findElement(By.name("result")).getAttribute("name=result");
+		System.out.println("GCD="+result);
+		
+	}
+}
+	  
